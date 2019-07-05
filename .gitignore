@@ -1,0 +1,5 @@
+﻿# 压缩文件
+*.zip
+
+# modules 文件
+**/node_modules
