@@ -32,7 +32,7 @@ export default {
             }else{
                 this.account='账号';
                 this.place='手机号/邮箱/会员名';
-                this.   isUser=true;
+                this.isUser=true;
             };
             
         }

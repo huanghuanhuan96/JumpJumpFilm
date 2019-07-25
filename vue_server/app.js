@@ -93,10 +93,10 @@ server.get('/hasUname',(req,res)=>{
 	})
 })
 //功能三:电影列表 
-server.get("/filmlist",(req,res)=>{
+server.post("/filmlist",(req,res)=>{
  //1:参数 pno pageSize
- var pno = req.query.pno;
- var ps = req.query.pageSize;
+ var pno = req.body.pno;
+ var ps = req.body.pageSize;
  //2:默认值 
  if(!pno){pno=1}
  if(!ps){ps=8}
@@ -136,6 +136,7 @@ server.get("/filmdetail",(req,res)=>{
 	 //3:json
 	 pool.query(sql,(err,result)=>{
 	   if(err)throw err;
+	   console.log(result);
 	   res.send({code:1,msg:"查询成功",data:result});
 	 })
 });

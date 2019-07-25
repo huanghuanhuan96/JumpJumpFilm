@@ -7,7 +7,7 @@
             <div class="message">
                 <div>
                     <div class="film-title">{{item.title}}</div>
-                    <div class="film-score">观众评<span>{{item.score}}</span></div>
+                    <div class="film-score">观众评分<span>{{item.score}}</span></div>
                     <div class="film-player">主演:{{item.player}}</div>
                     <div class="film-times">今天217家影院放映2868场</div>
                 </div>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import Qs from 'qs'
 export default {
     data(){
         return{
@@ -37,7 +38,15 @@ export default {
                 pno:this.pno,
                 ps:''
             }
-            this.axios.get(url,{params:obj}).then(result=>{
+            this.axios({
+                 method:'post',
+                 url:"/filmList",
+                 headers:{'deviceCode': "A95ZEF1-47B5-AC90BF3"},
+                 transformRequest:[function(data){
+                     return Qs.stringify(this.obj) 
+                 }]          
+                 }
+               ).then(result=>{
                 // console.log(result);
                 var list=this.filmList.concat(result.data.data);//凭借数组用list接住返回值
                 this.filmList=list //再给filmList
